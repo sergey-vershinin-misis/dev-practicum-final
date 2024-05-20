@@ -1,0 +1,6 @@
+# Replace with real data and copy to .env file
+
+DADATA_API_KEY=12345abcde12345abcdeff
+DADATA_SECRET_KEY=12345abcde12345abcdeff
+
+GEO_TREE_SECRET_KEY=12345abcde12345abcdeff

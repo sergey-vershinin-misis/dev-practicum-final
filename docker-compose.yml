@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  bot:
+    image: sevlvershinin/atm-project-bot
+    restart: on-failure
+    environment:
+      - ATM_PROJECT_PREDICTION_SERVICE_URL=http://api
+    env_file:
+      - .env
+    networks:
+      - MyNet
+    depends_on:
+      - api
+
+
+  api:
+    image: sevlvershinin/atm-project-api
+    environment:
+      - DATA_ENRICHMENT_ENABLED=TRUE
+      - REDIS_HOST=http://redis
+    env_file:
+      - .env
+    networks:
+      - MyNet
+    ports:
+      - "0.0.0.0:80:80"
+
+  
+  redis:
+    image: redis
+    networks:
+      - MyNet
+    ports:
+      - "0.0.0.0:6379:6379"
+
+
+networks:
+  MyNet:
+    name: MyNet
